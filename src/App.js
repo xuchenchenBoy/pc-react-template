@@ -1,6 +1,10 @@
 import React, { Component } from 'react';
+<<<<<<< HEAD:src/App.js
 import logo from './logo.svg';
 import './App.css';
+=======
+import _styles from './index.css';
+>>>>>>> parent of 2c2b035... remove sass support:src/views/app/index.js
 
 class App extends Component {
   render() {
@@ -10,7 +14,11 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to React</h2>
         </div>
+<<<<<<< HEAD:src/App.js
         <p className="App-intro">
+=======
+        <p className={_styles.appHeader}>
+>>>>>>> parent of 2c2b035... remove sass support:src/views/app/index.js
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
       </div>

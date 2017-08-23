@@ -27,6 +27,10 @@
     "html-webpack-plugin": "2.29.0",
     "jest": "20.0.4",
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    "node-sass-chokidar": "^0.0.3",
+>>>>>>> parent of 2c2b035... remove sass support
     "npm-run-all": "^4.0.2",
 =======
 >>>>>>> parent of f1a33fe... add css module
@@ -49,6 +53,7 @@
   "devDependencies": {},
   "scripts": {
 <<<<<<< HEAD
+<<<<<<< HEAD
     "test": "node scripts/test.js --env=jsdom",
     "build": "node scripts/build.js",
     "start": "node scripts/start.js"
@@ -57,6 +62,15 @@
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom"
 >>>>>>> parent of f1a33fe... add css module
+=======
+   
+    "test": "node scripts/test.js --env=jsdom",
+         "build-css": "node-sass-chokidar src/ -o src/",
+     "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
+         "start-js": "node scripts/start.js",
+    "start": "npm-run-all -p watch-css start-js",
+    "build": "npm run build-css && node scripts/build.js"
+>>>>>>> parent of 2c2b035... remove sass support
   },
   "jest": {
     "collectCoverageFrom": [
