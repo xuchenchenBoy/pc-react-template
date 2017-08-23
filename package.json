@@ -51,7 +51,7 @@
     "build-css": "node-sass-chokidar src/ -o src/",
     "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
     "start": "npm-run-all -p watch-css start-js",
-    "build": "npm run build-css && node scripts/build.js",
+    "build": "npm run build-css && node scripts/build.js"
   },
   "jest": {
     "collectCoverageFrom": [
