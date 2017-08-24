@@ -27,6 +27,7 @@
     "fs-extra": "3.0.1",
     "html-webpack-plugin": "2.29.0",
     "jest": "20.0.4",
+    "json-server": "^0.12.0",
     "node-sass-chokidar": "0.0.3",
     "npm-run-all": "^4.0.2",
     "object-assign": "4.1.1",
@@ -38,6 +39,7 @@
     "react-dom": "^15.6.1",
     "react-error-overlay": "^1.0.10",
     "style-loader": "0.18.2",
+    "superagent": "^3.6.0",
     "sw-precache-webpack-plugin": "0.11.4",
     "url-loader": "0.5.9",
     "webpack": "3.5.1",
@@ -53,7 +55,8 @@
     "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
     "start": "npm-run-all -p watch-css start-js",
     "build": "npm run build-css && node scripts/build.js",
-    "lint": "eslint --fix  --ext  .js,.jsx ./src/views/"
+    "lint": "eslint --fix  --ext  .js,.jsx ./src/views/",
+    "mock": "node mockServer.js"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -93,5 +96,5 @@
       "react-app"
     ]
   },
-  "proxy": "http://your_server"
+  "proxy": "http://localhost:3004"
 }
