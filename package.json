@@ -53,7 +53,7 @@
     "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
     "start": "npm-run-all -p watch-css start-js",
     "build": "npm run build-css && node scripts/build.js",
-    "lint": "eslint --fix --ext .js,.jsx src/"
+    "lint": "eslint --fix  --ext  .js,.jsx ./src/views/"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -93,7 +93,5 @@
       "react-app"
     ]
   },
-  "eslintConfig": {
-    "extends": "react-app"
-  }
+  "proxy": "http://uat.365yyf.com/recipecloud"
 }
