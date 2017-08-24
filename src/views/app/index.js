@@ -3,8 +3,7 @@ import _styles from './index.css';
 
 class App extends Component {
   onTestProxy() {
-    console.log(this);
-    fetch('/loginAuthor', { method: 'POST' });
+    fetch('/sztms/orderBill/orderList', { method: 'POST' });
   }
 
   render() {
@@ -13,7 +12,7 @@ class App extends Component {
         <div className="App-header">
           <h2>Welcome to React</h2>
         </div>
-        <p className={_styles.contentWrp} onClick={this.onTestProxy}>
+        <p className={_styles.contentWrp} onClick={this.onTestProxy.bind(this)}>
           To get started hello
         </p>
       </div>

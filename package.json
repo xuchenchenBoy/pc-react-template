@@ -93,5 +93,5 @@
       "react-app"
     ]
   },
-  "proxy": "http://uat.365yyf.com/recipecloud"
+  "proxy": "http://your_server"
 }
