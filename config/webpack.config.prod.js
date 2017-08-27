@@ -330,7 +330,7 @@ module.exports = {
       name: "commons",
       // (the commons chunk name)
 
-      filename: "./static/js/commons.js",
+      filename: "static/js/commons.js",
       minChunks: Infinity,
     }),
   ],
