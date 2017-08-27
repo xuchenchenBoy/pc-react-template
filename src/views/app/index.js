@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 import _styles from './index.css';
-import request from '../../utils/request';
 
 class App extends Component {
   onTestProxy() {
-    request.post('posts/server').send({ name: 'xuchen' }).exec();
+    // do request
   }
 
   render() {
