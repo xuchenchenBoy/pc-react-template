@@ -53,10 +53,10 @@
     "test": "node scripts/test.js --env=jsdom",
     "build-css": "node-sass-chokidar src/ -o src/",
     "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
-    "start": "npm-run-all -p watch-css start-js",
+    "start": "npm-run-all -p watch-css start-js mock",
     "build": "npm run build-css && node scripts/build.js",
     "lint": "eslint --fix  --ext  .js,.jsx ./src/views/",
-    "mock": "node mockServer.js"
+    "mock": "json-server --watch db.json --port 3004 --middlewares ./mockServer.js"
   },
   "jest": {
     "collectCoverageFrom": [
