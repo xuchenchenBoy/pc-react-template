@@ -326,13 +326,9 @@ module.exports = {
     // https://github.com/jmblog/how-to-optimize-momentjs-with-webpack
     // You can remove this if you don't use Moment.js:
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-    new webpack.optimize.CommonsChunkPlugin({
-      name: "commons",
-      // (the commons chunk name)
-
-      filename: "static/js/commons.js",
-      minChunks: Infinity,
-    }),
+    // resolve chunks cache problem
+    new webpack.optimize.CommonsChunkPlugin({name: 'commons'}),
+    new webpack.optimize.CommonsChunkPlugin({name: 'meta', chunks: ['commons']})
   ],
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.
