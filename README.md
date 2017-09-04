@@ -1,13 +1,13 @@
-##Start
+## Start
 npm start && npm start 
 
-##Build
+## Build
 npm build
 
-##Lint
+## Lint
 npm run lint
 
-##Mock API
+## Mock API
 If you request 'xx/api', you can edit db.json file, and add
 
     "api": {
@@ -15,8 +15,8 @@ If you request 'xx/api', you can edit db.json file, and add
       "result": "Hello, my name is xuchenchen."
     }
 
-##Example
+## Example
 Edit src/pages/login/index.js. And open console, click red text.
 
-##More
+## More
 Look [create-react-app](https://github.com/facebookincubator/create-react-app)
