@@ -3,12 +3,13 @@ import ReactDOM from 'react-dom';
 import { Router, Route, browserHistory, IndexRoute } from 'react-router';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
-import {createLogger} from 'redux-logger';
+import { createLogger } from 'redux-logger';
 import todoApp from '../reduces';
 import Login from '../pages/login';
 import promiseMiddleware from '../util/promiseMiddleware';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
+import { debug } from '../util/constants';
 
 const loggerMiddleware = createLogger();
 
@@ -21,12 +22,14 @@ const onEnterApp = (nextState, replaceState, callback) => {
   callback();
 };
 
+const middleWares = [
+  promiseMiddleware,
+  debug && loggerMiddleware,
+].filter(Boolean);
+
 const store = createStore(
   todoApp,
-  applyMiddleware(
-    promiseMiddleware,
-    loggerMiddleware,
-  ),
+  applyMiddleware(...middleWares),
 );
 
 const App = () => (

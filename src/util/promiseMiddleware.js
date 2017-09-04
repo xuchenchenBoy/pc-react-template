@@ -20,10 +20,10 @@ const promiseMiddleware = () => next => (action) => {
     if (res.body.errorMsg) {
       return next({ ...action, type: ERROR });
     }
-  }, () => {
-    return next({ ...action, type: ERROR });
+  }, () =>
+    next({ ...action, type: ERROR }),
     // console.log('err', err);
-  });
+  );
 };
 
 export default promiseMiddleware;

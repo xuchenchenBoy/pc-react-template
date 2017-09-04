@@ -59,7 +59,7 @@ module.exports = {
   // entry: [require.resolve('./polyfills'), paths.appIndexJs],
   entry: {
     main: [require.resolve('./polyfills'), paths.appIndexJs],
-    commons: ['react', 'react-dom', 'whatwg-fetch']
+    commons: ['react', 'react-dom', 'whatwg-fetch', 'redux', 'react-redux', 'react-router', 'superagent', 'redux-logger', ]
   },
   output: {
     // The build folder.

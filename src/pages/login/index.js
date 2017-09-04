@@ -10,7 +10,7 @@ import _styles from './index.css';
 
 class Login extends React.Component {
   clickAction() {
-    this.props.addTodo({ name: 'xuchen' });
+    this.props.addTodo({ name: 'xuchenchen' });
     browserHistory.push('/login');
   }
 
