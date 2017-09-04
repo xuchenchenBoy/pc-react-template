@@ -17,7 +17,8 @@
     "newline-per-chained-call": "off", // 关闭 链式调用必须换行的验证
     "jsx-a11y/no-static-element-interactions": "off", // 关闭 静态元素拥有交互时，需要增加role验证
     "import/prefer-default-export": "off", // 关闭 只有一个导出时，必须以default形式导出的验证
-    "class-methods-use-this": "off"
+    "class-methods-use-this": "off",
+    "func-names": "off"
   },
   "parserOptions":{
       "ecmaFeatures": {

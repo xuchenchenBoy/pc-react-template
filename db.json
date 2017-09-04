@@ -1,7 +1,6 @@
 {
   "server": {
-      "id": 1,
-      "title": "json-server",
-      "author": "11"
+  	"feedbackMsg": "success",
+    "result": "Hello, my name is xuchenchen."
   }
 }
