@@ -1,5 +1,5 @@
 ## Start
-npm start && npm start 
+npm install && npm start 
 
 ## Build
 npm build
