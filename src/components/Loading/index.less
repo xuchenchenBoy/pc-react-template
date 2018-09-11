@@ -1,0 +1,22 @@
+.loading {
+  text-align: center;
+  color: #999;
+  width: 2rem;
+  height: 2rem;
+  margin: 0 auto;
+  padding-top: 1rem;
+  font-size: .24rem;
+  .iconfont {
+    display: block;
+    width: .4rem;
+    margin: 0 auto .2rem;
+    font-size: .4rem;
+    animation: loadingRotate 1s infinite linear;
+  }
+}
+
+@keyframes loadingRotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}

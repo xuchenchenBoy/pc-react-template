@@ -1,0 +1,59 @@
+@import "../variable/main";
+@import "../mixins/main";
+@import "~normalize.css";
+
+@font-face {
+  font-family: 'iconfont';  /* project id 209775 */
+  src: url('//at.alicdn.com/t/font_209775_bukia2fm11n.eot');
+  src: url('//at.alicdn.com/t/font_209775_bukia2fm11n.eot?#iefix') format('embedded-opentype'),
+  url('//at.alicdn.com/t/font_209775_bukia2fm11n.woff') format('woff'),
+  url('//at.alicdn.com/t/font_209775_bukia2fm11n.ttf') format('truetype'),
+  url('//at.alicdn.com/t/font_209775_bukia2fm11n.svg#iconfont') format('svg');
+}
+
+.iconfont {
+  font-family: 'iconfont', sans-serif !important;
+  font-style: normal;
+}
+
+html {
+  color: @colorFontDefault;
+  box-sizing: border-box;
+  background: #f8f8f8;
+  font-family: Helvetica;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  line-height:inherit;
+  box-sizing: inherit;
+  color: inherit;
+  -webkit-tap-highlight-color: rgba(255,255,255,0);
+  -webkit-text-size-adjust:100%!important;
+  outline: none;
+}
+
+html, body {
+  /* min-height: 100%; */
+}
+
+body {
+  font-size: @defaultFontSize;
+}
+
+a {
+  text-decoration: none;
+}
+
+ul, ol, dl, li {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+#root {
+  width: @screenWidth;
+  margin: 0 auto;
+}

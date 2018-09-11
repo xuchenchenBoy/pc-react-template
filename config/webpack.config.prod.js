@@ -56,10 +56,9 @@ module.exports = {
   // You can exclude the *.map files from the build during deployment.
   devtool: shouldUseSourceMap ? 'source-map' : false,
   // In production, we only want to load the polyfills and the app code.
-  // entry: [require.resolve('./polyfills'), paths.appIndexJs],
   entry: {
-    main: [require.resolve('./polyfills'), paths.appIndexJs],
-    commons: ['react', 'react-dom', 'whatwg-fetch', 'redux', 'react-redux', 'react-router', 'superagent', 'redux-logger', ]
+    'index': [require.resolve('./polyfills'), paths.appIndexJs],
+    vendors: ['react', 'react-dom', 'react-redux', 'react-router', 'redux', 'immutable', 'redux-immutable', 'redux-saga', 'whatwg-fetch', 'rc-queue-anim']
   },
   output: {
     // The build folder.
@@ -92,7 +91,7 @@ module.exports = {
     // https://github.com/facebookincubator/create-react-app/issues/290
     // `web` extension prefixes have been added for better support
     // for React Native Web.
-    extensions: ['.web.js', '.js', '.json', '.web.jsx', '.jsx'],
+    extensions: ['.web.js', '.mjs', '.js', '.json', '.web.jsx', '.jsx'],
     alias: {
       
       // Support React Native Web
@@ -117,21 +116,21 @@ module.exports = {
 
       // First, run the linter.
       // It's important to do this before Babel processes the JS.
-      {
-        test: /\.(js|jsx)$/,
-        enforce: 'pre',
-        use: [
-          {
-            options: {
-              formatter: eslintFormatter,
-              eslintPath: require.resolve('eslint'),
+      // {
+      //   test: /\.(js|jsx|mjs)$/,
+      //   enforce: 'pre',
+      //   use: [
+      //     {
+      //       options: {
+      //         formatter: eslintFormatter,
+      //         eslintPath: require.resolve('eslint'),
               
-            },
-            loader: require.resolve('eslint-loader'),
-          },
-        ],
-        include: paths.appSrc,
-      },
+      //       },
+      //       loader: require.resolve('eslint-loader'),
+      //     },
+      //   ],
+      //   include: paths.appSrc,
+      // },
       {
         // "oneOf" will traverse all following loaders until one will
         // match the requirements. When no loader matches it will fall
@@ -149,11 +148,11 @@ module.exports = {
           },
           // Process JS with Babel.
           {
-            test: /\.(js|jsx)$/,
+            test: /\.(js|jsx|mjs)$/,
             include: paths.appSrc,
             loader: require.resolve('babel-loader'),
             options: {
-              
+              plugins: ['transform-decorators-legacy'],
               compact: true,
             },
           },
@@ -170,17 +169,21 @@ module.exports = {
           // use the "style" loader inside the async code so CSS from them won't be
           // in the main CSS file.
           {
-            test: /\.css$/,
+            test: /\.(css|less)$/,
             loader: ExtractTextPlugin.extract(
               Object.assign(
                 {
-                  fallback: require.resolve('style-loader'),
+                  fallback: {
+                    loader: require.resolve('style-loader'),
+                    options: {
+                      hmr: false,
+                    },
+                  },
                   use: [
                     {
                       loader: require.resolve('css-loader'),
                       options: {
                         importLoaders: 1,
-                        modules: true,
                         minimize: true,
                         sourceMap: shouldUseSourceMap,
                       },
@@ -205,6 +208,9 @@ module.exports = {
                         ],
                       },
                     },
+                    { 
+                      loader: require.resolve('less-loader') // compiles Less to CSS 
+                    }
                   ],
                 },
                 extractTextPluginOptions
@@ -214,7 +220,7 @@ module.exports = {
           },
           // "file" loader makes sure assets end up in the `build` folder.
           // When you `import` an asset, you get its filename.
-          // This loader don't uses a "test" so it will catch all modules
+          // This loader doesn't use a "test" so it will catch all modules
           // that fall through the other loaders.
           {
             loader: require.resolve('file-loader'),
@@ -222,7 +228,7 @@ module.exports = {
             // it's runtime that would otherwise processed through "file" loader.
             // Also exclude `html` and `json` extensions so they get processed
             // by webpacks internal loaders.
-            exclude: [/\.js$/, /\.html$/, /\.json$/],
+            exclude: [/\.(js|jsx|mjs)$/, /\.html$/, /\.json$/, /\.(css|less)$/],
             options: {
               name: 'static/media/[name].[hash:8].[ext]',
             },
@@ -271,6 +277,9 @@ module.exports = {
         // Pending further investigation:
         // https://github.com/mishoo/UglifyJS2/issues/2011
         comparisons: false,
+      },
+      mangle: {
+        safari10: true,
       },
       output: {
         comments: false,
@@ -326,9 +335,10 @@ module.exports = {
     // https://github.com/jmblog/how-to-optimize-momentjs-with-webpack
     // You can remove this if you don't use Moment.js:
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-    // resolve chunks cache problem
-    new webpack.optimize.CommonsChunkPlugin({name: 'commons'}),
-    new webpack.optimize.CommonsChunkPlugin({name: 'meta', chunks: ['commons']})
+    new webpack.optimize.CommonsChunkPlugin({ 
+      names: ['vendors', 'manifest'],
+      minChunks: Infinity
+    })
   ],
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.
@@ -337,5 +347,6 @@ module.exports = {
     fs: 'empty',
     net: 'empty',
     tls: 'empty',
+    child_process: 'empty',
   },
 };
